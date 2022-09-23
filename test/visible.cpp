@@ -2,6 +2,7 @@
 #include <thread>
 #include <chrono>
 
+// 永远的循环
 TEST(memory, visible)
 {
     // 停止标记

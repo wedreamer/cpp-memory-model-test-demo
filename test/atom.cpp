@@ -3,6 +3,7 @@
 #include <thread>
 #include <iostream>
 
+// 原子性
 TEST(memory, atom)
 {
     static int balance = 10;

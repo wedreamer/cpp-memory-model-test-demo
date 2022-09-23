@@ -9,6 +9,7 @@ struct Restult
     int r2;
 };
 
+// 有序性
 TEST(memory, orderly)
 {
     int a = 0;

@@ -5,8 +5,8 @@
 TEST(memory, visible)
 {
     // 停止标记
-    static bool isStop = false;
-    auto func = [=]
+    bool isStop = false;
+    auto func = [&]
     {
         auto foo = [=]
         {
@@ -18,7 +18,7 @@ TEST(memory, visible)
             }
         };
 
-        auto thr = std::thread([]
+        auto thr = std::thread([&]
                                {
                             // 睡 5 s 
                             std::this_thread::sleep_for(std::chrono::microseconds(1));
@@ -26,9 +26,10 @@ TEST(memory, visible)
                             isStop = true; });
         thr.join();
         foo();
+        isStop = false;
     };
 
-    for (size_t i = 0; i < 1000000; i++)
+    for (size_t i = 0; i < 10000; i++)
     {
         func();
     }

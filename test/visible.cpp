@@ -22,7 +22,7 @@ TEST(memory, visible)
 
         auto thr = std::thread([&]
                                {
-                            // 睡 5 s 
+                            // 睡 1 s 
                             std::this_thread::sleep_for(std::chrono::seconds(1));
                             // 停止 foo 的循环
                             isStop = true; });

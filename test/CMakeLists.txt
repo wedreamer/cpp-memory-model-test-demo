@@ -12,11 +12,12 @@ FetchContent_MakeAvailable(googletest)
 add_executable(
     unit_tests
     orderly.cpp
+    atom.cpp
+    visible.cpp
 )
 
 target_link_libraries(unit_tests
     PRIVATE
-    orderly
     gtest_main
 )
 
@@ -26,5 +27,5 @@ gtest_discover_tests(unit_tests
     PROPERTIES
     LABELS "unit"
     DISCOVERY_TIMEOUT # how long to wait (in seconds) before crashing
-    240
+    250
 )

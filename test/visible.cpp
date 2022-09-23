@@ -2,14 +2,15 @@
 #include <thread>
 #include <chrono>
 
-// 永远的循环
+// 不会导致永远的循环
 TEST(memory, visible)
 {
     // 停止标记
-    bool isStop = false;
+    // static 不会导致该问题
+    static bool isStop = false;
     auto func = [&]
     {
-        auto foo = [=]
+        auto foo = [&]
         {
             while (true)
             {
@@ -22,15 +23,14 @@ TEST(memory, visible)
         auto thr = std::thread([&]
                                {
                             // 睡 5 s 
-                            std::this_thread::sleep_for(std::chrono::microseconds(1));
+                            std::this_thread::sleep_for(std::chrono::seconds(1));
                             // 停止 foo 的循环
                             isStop = true; });
         thr.join();
         foo();
-        isStop = false;
     };
 
-    for (size_t i = 0; i < 10000; i++)
+    for (size_t i = 0; i < 10; i++)
     {
         func();
     }

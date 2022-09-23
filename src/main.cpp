@@ -1,35 +1,35 @@
-#include <vector>
 #include <thread>
-#include <iostream>
-
-struct Restult
-{
-    int r1; // Member (int variable)
-    int r2;
-};
+#include <chrono>
 
 int main()
 {
-    int a = 0;
-    int b = 0;
-    auto r = Restult{0, 0};
-    auto genThreads = [&]
+    // 停止标记
+    // static 不会导致该问题
+    static bool isStop = false;
+    auto func = [&]
     {
-        auto t1 = new std::thread([&]
-                                  { b = 1; r.r2 = a; });
-        auto t2 = new std::thread([&]
-                                  { b = 1; r.r2 = a; });
-        auto threads = std::vector<std::thread *>{};
-        threads.push_back(t1);
-        threads.push_back(t2);
-        for (auto &thr : threads)
-            thr->join();
-        std::cout << "r.r1 : \t" << r.r1 << std::endl;
-        std::cout << "r.r2 : \t" << r.r2 << std::endl;
+        auto foo = [&]
+        {
+            while (true)
+            {
+                bool b = isStop;
+                if (b)
+                    break;
+            }
+        };
+
+        auto thr = std::thread([&]
+                               {
+                            // 睡 5 s 
+                            std::this_thread::sleep_for(std::chrono::seconds(1));
+                            // 停止 foo 的循环
+                            isStop = true; });
+        thr.join();
+        foo();
     };
-    for (size_t i = 0; i < 2; i++)
+
+    for (size_t i = 0; i < 10; i++)
     {
-        genThreads();
+        func();
     }
-    return 0;
 }

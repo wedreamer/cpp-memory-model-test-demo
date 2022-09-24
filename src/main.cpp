@@ -4,7 +4,6 @@
 
 // 停止标记
 // static 不会导致该问题
-// 本现象的原因是编译器优化造成的，线程函数threadFun2中由于频繁的访问a，a的值用的是本线程缓存的值，因此不能看到主存中a的新值。测试下面两种方法有效 
 static bool isStop = false;
 
 static void foo()

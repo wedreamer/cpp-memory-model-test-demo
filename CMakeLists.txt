@@ -4,6 +4,8 @@ project(gtest-demo LANGUAGES CXX)
 
 # GoogleTest requires at least C++14
 set(CMAKE_CXX_STANDARD 14)
+# 设置编译器不优化
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
 
 # place binaries and libraries according to GNU standards
 include(GNUInstallDirs)

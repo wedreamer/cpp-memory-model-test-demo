@@ -19,11 +19,11 @@ TEST(memory, atom)
         // balance -> 5 || 10 || 15
         for (auto &thr : threads)
             thr->join();
-        EXPECT_TRUE(balance == 5 || balance == 10 || balance == 15)
-            << "balance: \t" << ::testing::PrintToString(balance) << std::endl;
+        EXPECT_TRUE(balance == 5 || balance == 10 || balance == 15) << "balance: \t" << ::testing::PrintToString(balance) << std::endl;
+        // EXPECT_TRUE(balance == 10) << "balance: \t" << ::testing::PrintToString(balance) << std::endl;
         balance = 10;
     };
-    for (size_t i = 0; i < 1000; i++)
+    for (size_t i = 0; i < 10000; i++)
     {
         genThreads();
     }

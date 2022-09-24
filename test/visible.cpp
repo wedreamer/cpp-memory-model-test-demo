@@ -39,7 +39,7 @@ TEST(memory, visible)
         foo();
     };
 
-    for (size_t i = 0; i < 100000; i++)
+    for (size_t i = 0; i < 1000; i++)
     {
         func();
     }

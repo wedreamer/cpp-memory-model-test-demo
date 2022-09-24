@@ -1,5 +1,10 @@
 # cpp-memory-model-test-demo
 
+## [资源](https://hs9t5hggzr.feishu.cn/drive/folder/fldcnNXyCMwMlD5x1oKI6i1B5Nb)
+
+[c++ 并发内存模型1-为什么需要内存模型](https://hs9t5hggzr.feishu.cn/drive/folder/fldcnNXyCMwMlD5x1oKI6i1B5Nb) 
+[c++ 并发内存模型1-为什么需要内存模型.md]()
+
 ## build
 
 ```bash

@@ -2,7 +2,7 @@
 #include <thread>
 #include <chrono>
 
-// 不会导致永远的循环
+// 不会导致永远的循环 -> 还在学习中, java 会导致
 TEST(memory, visible)
 {
     // 停止标记
